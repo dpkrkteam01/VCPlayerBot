@@ -1,12 +1,13 @@
-FROM nikolaik/python-nodejs:python3.9-nodejs16
+FROM python:3.9
 
-RUN apt update && apt upgrade -y
-RUN apt install ffmpeg -y
+WORKDIR /app
 
-COPY requirements.txt /requirements.txt
-RUN cd /
-RUN pip3 install -U pip && pip3 install -U -r requirements.txt
-RUN mkdir /VCPlayerBot
-WORKDIR /VCPlayerBot
-COPY start.sh /start.sh
-CMD ["/bin/bash", "/start.sh"]
+COPY requirements.txt /app/
+
+RUN pip4 install -r requirements.txt
+
+COPY . /app
+
+#set a default command
+
+CMD python3 main.py
