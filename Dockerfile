@@ -1,13 +1,13 @@
-FROM python:3.9
+FROM nikolaik/python-nodejs:python3.9-nodejs16
 
-WORKDIR /app
+WORKDIR  /VCPlayerBot
 
-COPY requirements.txt /app/
+COPY requirements.txt /requirements.txt
 
-RUN pip4 install -r requirements.txt
+RUN pip3 install -U pip && pip3 install -U -r requirements.txt
 
-COPY . /app
+COPY start.sh /start.sh
 
 #set a default command
 
-CMD python3 main.py
+CMD ["/bin/bash", "/start.sh"]
